@@ -1,0 +1,16 @@
+.profile__container {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  margin-right: 244px;
+}
+@media (max-width: 901px) {
+  .profile__container {
+    margin-right: 144px;
+  }
+}
+@media (max-width: 769px) {
+  .profile__container {
+    margin-right: 0;
+  }
+}
