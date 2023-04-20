@@ -10,4 +10,4 @@
 1. Подключить сайт к серверу
 2. Добавить функциональность всем кнопкам
 
-## Ссылка на проект:https://antonprosky.github.io/-yet-another-project/
+## Ссылка на проект:https://antonprosky.github.io/mesto/
