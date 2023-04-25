@@ -9,17 +9,16 @@
   cursor: pointer;
   border-radius: 2px;
   transition: 0.3s;
-  border:  2px solid rgba(255, 255, 255, 1);
-  
+  border: 2px solid rgba(255, 255, 255, 1);
 }
 @media (max-width: 769px) {
   .profile__add-button {
     width: 284px;
     margin-top: 36px;
-    background-size:16px 16px;
+    background-size: 16px 16px;
     background-position: center;
-}
-.profile__add-button:hover {
-  opacity: 0.6;
-}
+  }
+  .profile__add-button:hover {
+    opacity: 0.6;
+  }
 }

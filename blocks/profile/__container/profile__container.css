@@ -6,7 +6,6 @@
 }
 @media (max-width: 769px) {
   .profile__container {
-  margin: auto;
+    margin: auto;
   }
 }
-
