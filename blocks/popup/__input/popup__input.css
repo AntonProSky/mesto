@@ -4,11 +4,8 @@
   font-size: 14px;
   line-height: 17px;
   border: none;
-  border-bottom: 1px solid rgba(233, 233, 233, 1);
+  color: rgba(0, 0, 0, 1);
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
   margin-top: 30px;
-  outline: none;
-}
-.popup__input:focus {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
-  transition: 0.3s;
+  padding-bottom: 13px;
 }

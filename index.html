@@ -4,27 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="page/index.css">
-    <title>Mesto</title>
+    <title lang="en">Mesto</title>
   </head>
   <body class="page">
     <header class="header">
-      <img class="header__logo" src="./image/logo.svg" alt="Логотип.">
+      <img class="header__logo" src="./image/logo.svg" alt="Логотип текущего проекта.">
     </header>
     <main class="content">
       <section class="profile">
         <img
           class="profile__avatar"
           src="./image/Avatar.jpg"
-          alt="Жак-Ив Кусто."
+          alt="фотография аватара."
         >
         <div class="profile__container">
           <div class="profile__info">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
-            <h2 class="profile__subtitle">Исследователь океана</h2>
+            <p class="profile__subtitle">Исследователь океана</p>
           </div>
-          <button class="profile__edit-button"></button>
+          <button class="profile__edit-button" type="button"></button>
         </div>
-        <button class="profile__add-button"></button>
+        <button class="profile__add-button" type="button"></button>
       </section>
 
       <section class="elements">
@@ -36,7 +36,7 @@
           >
           <div class="elements__bar">
             <h2 class="elements__title">Карачаевск</h2>
-            <button class="elements__group"></button>
+            <button class="elements__button-like" type="button"></button>
           </div>
         </div>
         <div class="elements__element">
@@ -47,7 +47,7 @@
           >
           <div class="elements__bar">
             <h2 class="elements__title">Гора Эльбрус</h2>
-            <button class="elements__group"></button>
+            <button class="elements__button-like" type="button"></button>
           </div>
         </div>
         <div class="elements__element">
@@ -58,7 +58,7 @@
           >
           <div class="elements__bar">
             <h2 class="elements__title">Домбай</h2>
-            <button class="elements__group"></button>
+            <button class="elements__button-like" type="button"></button>
           </div>
         </div>
         <div class="elements__element">
@@ -69,7 +69,7 @@
           >
           <div class="elements__bar">
             <h2 class="elements__title">Гора Эльбрус</h2>
-            <button class="elements__group"></button>
+            <button class="elements__button-like" type="button"></button>
           </div>
         </div>
         <div class="elements__element">
@@ -80,7 +80,7 @@
           >
           <div class="elements__bar">
             <h2 class="elements__title">Домбай</h2>
-            <button class="elements__group"></button>
+            <button class="elements__button-like" type="button"></button>
           </div>
         </div>
         <div class="elements__element">
@@ -91,27 +91,27 @@
           >
           <div class="elements__bar">
             <h2 class="elements__title">Карачаево-Черкессия</h2>
-            <button class="elements__group"></button>
+            <button class="elements__button-like" type="button"></button>
           </div>
         </div>
       </section>
     </main>
     <footer class="footer">
-      <p class="footer__copyright">© 2020 Mesto Russia</p>
+      <p class="footer__copyright" lang="en"> &copy 2020 Mesto Russia</p>
     </footer>
 
-    <section class="popup">
+    <div class="popup">
       <div class="popup__container">
-        <button class="popup__close"></button>
+        <button class="popup__close" type="button"></button>
         <h2 class="popup__header">Редактировать профиль</h2>
-        <form class="popup__form">
-          <input class="popup__input popup__input_name" type="text" name="name">
-          <input class="popup__input popup__input_job" type="text" name="job">
+        <form class="popup__form" name="formElement">
+          <input class="popup__input popup__input_type_name" type="text" name="name" placeholder="Имя">
+          <input class="popup__input popup__input_type_job" type="text" name="job" placeholder="Профессия">
+          <button class="popup__save" type="submit" value="">Сохранить</button>
         </form>
-        <input class="popup__save" type="submit" value="">
       </div>
-    </section>
+    </div>
     
-    <script src="index.js"></script>
+    <script src="scripts/index.js" defer></script>
   </body>
 </html>
