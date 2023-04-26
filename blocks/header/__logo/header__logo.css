@@ -1,8 +1,8 @@
 .header__logo {
   display: block;
   margin-bottom: 42px;
-  max-width: 142px;
-  max-height: 33px;
+  width: 142px;
+  height: 33px;
   object-fit: cover;
 }
 @media (max-width: 900px) {
