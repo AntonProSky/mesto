@@ -1,0 +1,9 @@
+.popup__container_border {
+  border-radius: 0px;
+  background-color: transparent;
+  max-width: 75vw;
+  max-height: 75vh;
+  padding: 0;
+  margin: auto;
+  width: auto;
+}

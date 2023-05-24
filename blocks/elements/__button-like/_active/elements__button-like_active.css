@@ -1,3 +1,5 @@
 .elements__button-like_active{
     background-image: url(../../../../image/Group-active.svg);
+    transition: none;
+    opacity: 1;
 }

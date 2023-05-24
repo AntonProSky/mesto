@@ -26,92 +26,57 @@
         </div>
         <button class="profile__add-button" type="button"></button>
       </section>
-
       <section class="elements">
-        <div class="elements__element">
-          <img
-            class="elements__mask-group"
-            src="./image/Karachaevsk.jpg"
-            alt="Карачаевск."
-          >
-          <div class="elements__bar">
-            <h2 class="elements__title">Карачаевск</h2>
-            <button class="elements__button-like" type="button"></button>
-          </div>
-        </div>
-        <div class="elements__element">
-          <img
-            class="elements__mask-group"
-            src="./image/Elbrus.jpg"
-            alt="Эльбрус."
-          >
-          <div class="elements__bar">
-            <h2 class="elements__title">Гора Эльбрус</h2>
-            <button class="elements__button-like" type="button"></button>
-          </div>
-        </div>
-        <div class="elements__element">
-          <img
-            class="elements__mask-group"
-            src="./image/Dombai.jpg"
-            alt="Домбай."
-          >
-          <div class="elements__bar">
-            <h2 class="elements__title">Домбай</h2>
-            <button class="elements__button-like" type="button"></button>
-          </div>
-        </div>
-        <div class="elements__element">
-          <img
-            class="elements__mask-group"
-            src="./image/Elbrus.jpg"
-            alt="Эльбрус."
-          >
-          <div class="elements__bar">
-            <h2 class="elements__title">Гора Эльбрус</h2>
-            <button class="elements__button-like" type="button"></button>
-          </div>
-        </div>
-        <div class="elements__element">
-          <img
-            class="elements__mask-group"
-            src="./image/Dombai.jpg"
-            alt="Домбай."
-          >
-          <div class="elements__bar">
-            <h2 class="elements__title">Домбай</h2>
-            <button class="elements__button-like" type="button"></button>
-          </div>
-        </div>
-        <div class="elements__element">
-          <img
-            class="elements__mask-group"
-            src="./image/Karachaevsk.jpg"
-            alt="Карачаевск."
-          >
-          <div class="elements__bar">
-            <h2 class="elements__title">Карачаево-Черкессия</h2>
-            <button class="elements__button-like" type="button"></button>
-          </div>
-        </div>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__copyright" lang="en"> &copy; 2020 Mesto Russia</p>
     </footer>
 
-    <div class="popup">
+    <div class="popup" id="popup-profile">
       <div class="popup__container">
-        <button class="popup__close" type="button"></button>
+        <button class="popup__close" id="popup__close_profile" type="button"></button>
         <h2 class="popup__header">Редактировать профиль</h2>
         <form class="popup__form" name="formElement">
           <input class="popup__input popup__input_type_name" type="text" name="name" placeholder="Имя">
           <input class="popup__input popup__input_type_job" type="text" name="job" placeholder="Профессия">
-          <button class="popup__save" type="submit" value="">Сохранить</button>
+          <button class="popup__save" id="popup__save_profile" type="submit" value="">Сохранить</button>
         </form>
       </div>
     </div>
+
+    <div class="popup" id="popup-card">
+      <div class="popup__container">
+        <button class="popup__close" id="popup__close_card" type="button"></button>
+        <h2 class="popup__header">Новое место</h2>
+        <form class="popup__form" id="popup__form_create-card" name="formElement">
+          <input class="popup__input" id="popup__input_type_placename" type="text" name="placename" placeholder="Название">
+          <input class="popup__input" id="popup__input_type_href" type="text" name="href" placeholder="Ссылка на картинку">
+          <button class="popup__save" id="popup__create_card" type="submit" value="">Создать</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="popup" id="popup-image">
+      <figure class="popup__container popup__container_border">
+        <img class="popup__image">
+        <button class="popup__close" id="popup__close_image" type="button"></button>
+        <figcaption class="popup__header popup__header_caption" id="popup__title"></figcaption>
+      </figure>
+    </div>
+
+    <template id="template-card">
+      <div class="elements__element">
+        <button class="elements__delete-button" type="button"></button>
+        <img class="elements__mask-group">
+        <div class="elements__bar">
+          <h2 class="elements__title"></h2>
+          <button class="elements__button-like" type="button"></button>
+        </div>
+      </div>
+    </template>
     
+    <script src="scripts/constants.js"></script>
     <script src="scripts/index.js" defer></script>
   </body>
 </html>
