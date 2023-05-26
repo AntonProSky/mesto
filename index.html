@@ -37,7 +37,7 @@
       <div class="popup__container">
         <button class="popup__close" id="popup__close_profile" type="button"></button>
         <h2 class="popup__header">Редактировать профиль</h2>
-        <form class="popup__form" name="formElement">
+        <form class="popup__form" name="formElement" id="popup__form_create-profile">
           <input class="popup__input popup__input_type_name" type="text" name="name" placeholder="Имя">
           <input class="popup__input popup__input_type_job" type="text" name="job" placeholder="Профессия">
           <button class="popup__save" id="popup__save_profile" type="submit" value="">Сохранить</button>
@@ -57,9 +57,9 @@
       </div>
     </div>
 
-    <div class="popup" id="popup-image">
+    <div class="popup popup_theme_dark" id="popup-image">
       <figure class="popup__container popup__container_border">
-        <img class="popup__image">
+        <img class="popup__image" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="Архыз">
         <button class="popup__close" id="popup__close_image" type="button"></button>
         <figcaption class="popup__header popup__header_caption" id="popup__title"></figcaption>
       </figure>

@@ -1,10 +1,10 @@
 const templateCard = document.getElementById("template-card");
-const gridElements = document.querySelector(".elements");
+const gridElement = document.querySelector(".elements");
 
 const editButton = document.querySelector(".profile__edit-button");
-const popup = document.querySelector(".popup");
-const closeButton = document.getElementById("popup__close_profile");
-const formElement = document.querySelector(".popup__form");
+const popupProfile = document.getElementById("popup-profile");
+const closeButtonProfile = document.getElementById("popup__close_profile");
+const formChangeProfile = document.getElementById("popup__form_create-profile");
 const formCreateCard = document.getElementById("popup__form_create-card");
 const nameInput = document.querySelector(".popup__input_type_name");
 const jobInput = document.querySelector(".popup__input_type_job");
@@ -18,6 +18,12 @@ const closeButtonCard = document.getElementById("popup__close_card");
 const popupCard = document.getElementById("popup-card");
 const formAddCard = document.getElementById("popup__form_create-card");
 
+const popupImage = document.getElementById("popup-image");
+const closeButtonImage = document.getElementById("popup__close_image");
+const containerImage = document.querySelector(".popup__image");
+const titleImage = document.getElementById("popup__title");
+
+
 const createCard = (card) => {
   const elementCard = templateCard.content
     .querySelector(".elements__element")
@@ -28,11 +34,6 @@ const createCard = (card) => {
   const likeButton = elementCard.querySelector(".elements__button-like");
   const deleteButton = elementCard.querySelector(".elements__delete-button");
 
-  const popupImage = document.getElementById("popup-image");
-  const closeButtonImage = document.getElementById("popup__close_image");
-  const containerImage = document.querySelector(".popup__image");
-  const titleImage = document.getElementById("popup__title");
-
   const handleDelete = () => {
     elementCard.remove();
   };
@@ -42,19 +43,19 @@ const createCard = (card) => {
   };
 
   const handleClickImagePopup = () => {
-    popupImage.classList.add("popup_opened");
     containerImage.src = imageCard.src;
+    containerImage.alt = titleCard.textContent
     titleImage.textContent = titleCard.textContent;
   };
 
-  const handleCloseImagePopup = () => {
-    popupImage.classList.remove("popup_opened");
-  };
+  const handleOpenImagePopup = () =>{
+    popupImage.classList.add("popup_opened");
+  }
 
   likeButton.addEventListener("click", handleLike);
   deleteButton.addEventListener("click", handleDelete);
   imageCard.addEventListener("click", handleClickImagePopup);
-  closeButtonImage.addEventListener("click", handleCloseImagePopup);
+  imageCard.addEventListener("click",handleOpenImagePopup)
 
   titleCard.textContent = card.name;
   imageCard.src = card.link;
@@ -68,15 +69,14 @@ const renderCard = (element, card) => {
 };
 
 initialCards.forEach((card) => {
-  renderCard(gridElements, card);
+  renderCard(gridElement, card);
 });
 
 formAddCard.addEventListener("submit", (evt) => {
   evt.preventDefault();
   const data = { name: titleInput.value, link: imageInput.value };
-  if (data) {
-    renderCard(gridElements, data);
-  }
+    renderCard(gridElement, data);
+  
   titleInput.value = "";
   imageInput.value = "";
 
@@ -85,13 +85,13 @@ formAddCard.addEventListener("submit", (evt) => {
 
 // открытие, закрытие и отправка формы попапа профиля
 const handleOpenPopup = () => {
-  popup.classList.add("popup_opened");
+  popupProfile.classList.add("popup_opened");
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
 };
 
 const handleClosePopup = () => {
-  popup.classList.remove("popup_opened");
+  popupProfile.classList.remove("popup_opened");
 };
 function handleFormSubmit(evt) {
   evt.preventDefault();
@@ -109,9 +109,19 @@ const handleClosePopupCard = () => {
   popupCard.classList.remove("popup_opened");
 };
 
-formElement.addEventListener("submit", handleFormSubmit);
+const handleOpenImagePopup = () =>{
+  popupImage.classList.add("popup_opened");
+}
+
+const handleCloseImagePopup = () => {
+  popupImage.classList.remove("popup_opened");
+};
+
+formChangeProfile.addEventListener("submit", handleFormSubmit);
 editButton.addEventListener("click", handleOpenPopup);
-closeButton.addEventListener("click", handleClosePopup);
+closeButtonProfile.addEventListener("click", handleClosePopup);
 
 addButton.addEventListener("click", handleOpenPopupCard);
 closeButtonCard.addEventListener("click", handleClosePopupCard);
+
+closeButtonImage.addEventListener("click", handleCloseImagePopup);
