@@ -1,6 +1,7 @@
 const templateCard = document.getElementById("template-card");
 const gridElement = document.querySelector(".elements");
 
+const popupAll = document.querySelectorAll(".popup");
 const editButton = document.querySelector(".profile__edit-button");
 const popupProfile = document.getElementById("popup-profile");
 const closeButtonProfile = document.getElementById("popup__close_profile");
@@ -23,9 +24,11 @@ const closeButtonImage = document.getElementById("popup__close_image");
 const containerImage = document.querySelector(".popup__image");
 const titleImage = document.getElementById("popup__title");
 
-
+// отрисовка массива + кнопка удаления и лайка карточки
 const createCard = (card) => {
-  const elementCard = templateCard.content.querySelector(".elements__element").cloneNode(true);
+  const elementCard = templateCard.content
+    .querySelector(".elements__element")
+    .cloneNode(true);
 
   const imageCard = elementCard.querySelector(".elements__mask-group");
   const titleCard = elementCard.querySelector(".elements__title");
@@ -40,14 +43,13 @@ const createCard = (card) => {
     evt.target.classList.toggle("elements__button-like_active");
   };
 
-// Открытие попап картинки
+  // Открытие попап картинки
   const handleClickImagePopup = () => {
     containerImage.src = imageCard.src;
-    containerImage.alt = titleCard.textContent
+    containerImage.alt = titleCard.textContent;
     titleImage.textContent = titleCard.textContent;
     openPopup(popupImage);
   };
-
 
   likeButton.addEventListener("click", handleLike);
   deleteButton.addEventListener("click", handleDelete);
@@ -72,8 +74,8 @@ initialCards.forEach((card) => {
 formAddCard.addEventListener("submit", (evt) => {
   evt.preventDefault();
   const data = { name: titleInput.value, link: imageInput.value };
-    renderCard(gridElement, data);
-  
+  renderCard(gridElement, data);
+
   titleInput.value = "";
   imageInput.value = "";
 
@@ -104,7 +106,7 @@ function handleFormSubmit(evt) {
 
 const handleclosePopup = () => {
   closePopup(popupProfile);
-}
+};
 
 //универсальные функции открытия и закрытия попапов
 const openPopup = (popup) => {
@@ -118,7 +120,24 @@ const closePopup = (popup) => {
 //Закрытие попапа картинки
 handleCloseImagePopup = () => {
   closePopup(popupImage);
-}
+};
+
+//Закрытие всех попапов нажатием на оверлей
+popupAll.forEach((popup) => {
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      closePopup(popup);
+    }
+  });
+});
+
+popupAll.forEach((popup) => {
+  popup.addEventListener("mousedown", function (event) {
+    if (event.target === event.currentTarget) {
+      closePopup(popup);
+    }
+  });
+});
 
 formChangeProfile.addEventListener("submit", handleFormSubmit);
 editButton.addEventListener("click", handleOpenPopup);
