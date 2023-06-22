@@ -10,22 +10,20 @@ const showError = (errorElement, message, inputErrorClass) => {
 
 const toggleInputState = (inputElement, options) => {
   const isValid = inputElement.validity.valid;
-  const inputSectionElement = inputElement.closest(
-    options.inputSectionSelector
-  );
-  const errorElement = inputSectionElement.querySelector(
-    options.inputErrorSelector
-  );
+  const inputSectionElement = inputElement.closest( options.inputSectionSelector);
+  const errorElement = inputSectionElement.querySelector(options.inputErrorSelector);
   if (isValid) {
     hiddenError(errorElement, options.inputErrorClass);
   } else {
-    showError(
-      errorElement,
-      inputElement.validationMessage,
-      options.inputErrorClass
-    );
+    showError(errorElement,inputElement.validationMessage,options.inputErrorClass);
   }
 };
+
+const hiddenErrorForInput = (inputElement,inputErrorClass) => {
+  const inputSectionElement = inputElement.closest( options.inputSectionSelector);
+  const errorElement = inputSectionElement.querySelector(options.inputErrorSelector);
+  hiddenError(errorElement,inputErrorClass);
+}
 
 const enableButton = (buttonSubmit, disabledButtonClass) => {
   buttonSubmit.removeAttribute("disabled");
@@ -70,14 +68,5 @@ const enableValidation = (options) => {
   });
 };
 
-const options = {
-  formSelector: ".popup__form",
-  buttonSelector: ".popup__save",
-  inputSelector: ".popup__input",
-  inputSectionSelector: ".popup__section",
-  inputErrorSelector: ".popup__input-error",
-  disabledButtonClass: "popup__save_inactive",
-  inputErrorClass: "popup__input-error_active",
-};
 
-enableValidation(options);
+
