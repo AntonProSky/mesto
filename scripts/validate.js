@@ -9,19 +9,21 @@ const showError = (errorElement, message, inputErrorClass) => {
 };
 
 const toggleInputState = (inputElement, options) => {
+  const {inputSectionSelector, inputErrorSelector, inputErrorClass} = options;
   const isValid = inputElement.validity.valid;
-  const inputSectionElement = inputElement.closest( options.inputSectionSelector);
-  const errorElement = inputSectionElement.querySelector(options.inputErrorSelector);
+  const inputSectionElement = inputElement.closest(inputSectionSelector);
+  const errorElement = inputSectionElement.querySelector(inputErrorSelector);
   if (isValid) {
-    hiddenError(errorElement, options.inputErrorClass);
+    hiddenError(errorElement,inputErrorClass);
   } else {
-    showError(errorElement,inputElement.validationMessage,options.inputErrorClass);
+    showError(errorElement,inputElement.validationMessage,inputErrorClass);
   }
 };
 
-const hiddenErrorForInput = (inputElement,inputErrorClass) => {
-  const inputSectionElement = inputElement.closest( options.inputSectionSelector);
-  const errorElement = inputSectionElement.querySelector(options.inputErrorSelector);
+const hiddenErrorForInput = (inputElement, options) => {
+  const {inputSectionSelector, inputErrorSelector, inputErrorClass} = options;
+  const inputSectionElement = inputElement.closest(inputSectionSelector);
+  const errorElement = inputSectionElement.querySelector(inputErrorSelector);
   hiddenError(errorElement,inputErrorClass);
 }
 
