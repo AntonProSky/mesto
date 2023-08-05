@@ -1,81 +1,85 @@
 export class FormValidator{
-  constructor(validators,form){
-    this.validators = validators;
-    this.form = form;
-    this.formList = Array.from(document.querySelector(this.validators.inputSelector));
-    this.buttonElement = this.form.querySelector(this.validators.buttonSelector);
+  constructor(options, formElement) {
+    this._options = options;
+    this._formElement = formElement;
+    this._formList = Array.from(
+      this._formElement.querySelectorAll(this._options.inputSelector)
+    );
+    this._errorMessage = this._formElement.querySelector(this._options.inputErrorSelector);
+    this._buttonSubmit = this._formElement.querySelector(this._options.buttonSelector);
   }
 
-  enableValidation(){
-    this.form.addEventListener('submit', (evt) => evt.preventDefault());
-    this._setEventListener();
-  
-  };
+  enableValidation() {
+    this._formElement.addEventListener('submit', event => event.preventDefault());
+    this._setEventListeners();
+  }
 
-  disabledButton () {
-    this.buttonElement.setAttribute("disabled", "true");
-    this.buttonElement.classList.add(disabledButtonClass);
-  };
-
-  enableButton() {
-    this.buttonSubmit.removeAttribute("disabled");
-    this.buttonSubmit.classList.remove(disabledButtonClass);
-  };
-
-  _setEventListener() {
-
-    this.formList.forEach((inputElement) => {
-      inputElement.addEventListener("input", () => {
+  _setEventListeners() {
+    this._formList.forEach(inputElement => {
+      inputElement.addEventListener('input', () => {
         this._toggleInputState(inputElement);
         this._toggleButtonState();
       });
     });
-  };
-
-  toggleInputState (inputElement) {
-    if (isValid) {
-     this._hiddenError(inputElement);
-    } else {
-      this._showError(inputElement,inputElement.validationMessage);
-    }
-  };
-
- toggleButtonState = (buttonSubmit) => {
-    if (formIsValid) {
-      this.enableButton(buttonSubmit, disabledButtonClass);
-    } else {
-      this.disabledButton(buttonSubmit, disabledButtonClass);
-    }
-  };
-
-  _hiddenError (errorElement) {
-    errorElement.textContent = "";
-    errorElement.classList.remove(this.validators.inputErrorClass);
-  };
-  
-  _showError = (errorElement, message) => {
-    errorElement.innerText = message;
-    errorElement.classList.add(this.validators.inputErrorClass);
-  };
-  
-  
-  
-  hiddenErrorForInput(inputElement, options) {
-    const {inputSectionSelector, inputErrorSelector, inputErrorClass} = options;
-    const inputSectionElement = inputElement.closest(inputSectionSelector);
-    const errorElement = inputSectionElement.querySelector(inputErrorSelector);
-    hiddenError(errorElement,inputErrorClass);
   }
-  
-  
-  
 
-  
- 
-  
-  
-   
+  hideErrorForInput() {
+    this._toggleButtonState();
+    this._formList.forEach(inputElement => {
+      this._inputElement = inputElement;
+      this._errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
+      this._hideError();
+    });
+  }
+
+  disabledButton() {
+    this._buttonSubmit.setAttribute('disabled', 'true');
+    this._buttonSubmit.classList.add(this._options.disabledButtonClass);
+  }
+
+  _hideError = (errorElement, inputErrorClass) => {
+  errorElement.textContent = "";
+  errorElement.classList.remove(inputErrorClass);
+};
+
+  _showError = (errorElement, message, inputErrorClass) => {
+  errorElement.innerText = message;
+  errorElement.classList.add(inputErrorClass);
+};
+
+_toggleInputState(inputElement,errorElement, inputErrorClass) {
+  if (!inputElement.validity.valid) {
+    this._hideError(inputElement, errorElement,inputErrorClass);
+  } else {
+    this._showError(inputElement, errorElement,inputErrorClass);
+  }
+};
+
+_hasInvalidInput() {
+  return this._formList.some(inputElement => {
+    return !inputElement.validity.valid;
+  });
 }
+
+
+_toggleButtonState (){
+  if (this._hasInvalidInput()) {
+    this._buttonSubmit.classList.add(this._options.disabledButtonClass);
+    this._buttonSubmit.setAttribute('disabled', 'true');
+  } else {
+    this._buttonSubmit.classList.remove(this._options.disabledButtonClass);
+    this._buttonSubmit.removeAttribute('disabled');
+  }
+};
+}
+
+
+
+
+
+
+
+
 
 
 
