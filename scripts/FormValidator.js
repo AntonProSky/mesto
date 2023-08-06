@@ -2,7 +2,7 @@ export class FormValidator{
   constructor(options, formElement) {
     this._options = options;
     this._formElement = formElement;
-    this._formList = Array.from(
+    this._inputList = Array.from(
       this._formElement.querySelectorAll(this._options.inputSelector)
     );
     this._errorMessage = this._formElement.querySelector(this._options.inputErrorSelector);
@@ -15,48 +15,49 @@ export class FormValidator{
   }
 
   _setEventListeners() {
-    this._formList.forEach(inputElement => {
+    this._inputList.forEach(inputElement => {
       inputElement.addEventListener('input', () => {
-        this._toggleInputState(inputElement);
+        const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
+        this._toggleInputState(inputElement,errorElement);
         this._toggleButtonState();
       });
     });
   }
 
-  hideErrorForInput() {
+  resetValidationState() {
     this._toggleButtonState();
-    this._formList.forEach(inputElement => {
-      this._inputElement = inputElement;
-      this._errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
-      this._hideError();
+    this._inputList.forEach(inputElement => {
+      const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
+      this._hideError(errorElement);
     });
-  }
+  };
 
   disabledButton() {
     this._buttonSubmit.setAttribute('disabled', 'true');
     this._buttonSubmit.classList.add(this._options.disabledButtonClass);
-  }
+  };
 
-  _hideError = (errorElement, inputErrorClass) => {
+  // Все переделал по вашим комментариям, но не могу понять почему здесь выдает ошибку что у textContent пустое свойство.//
+  _hideError = (errorElement) => {
   errorElement.textContent = "";
-  errorElement.classList.remove(inputErrorClass);
+  errorElement.classList.remove(this._options.inputErrorClass);
 };
-
-  _showError = (errorElement, message, inputErrorClass) => {
+// Здесь у innerText такая же проблема//
+  _showError = (errorElement, message) => {
   errorElement.innerText = message;
-  errorElement.classList.add(inputErrorClass);
+  errorElement.classList.add(this._options.inputErrorClass);
 };
 
-_toggleInputState(inputElement,errorElement, inputErrorClass) {
+_toggleInputState(inputElement,errorElement) {
   if (!inputElement.validity.valid) {
-    this._hideError(inputElement, errorElement,inputErrorClass);
+    this._hideError(errorElement);
   } else {
-    this._showError(inputElement, errorElement,inputErrorClass);
+    this._showError(errorElement, inputElement.validationMessage);
   }
 };
 
 _hasInvalidInput() {
-  return this._formList.some(inputElement => {
+  return this._inputList.some(inputElement => {
     return !inputElement.validity.valid;
   });
 }

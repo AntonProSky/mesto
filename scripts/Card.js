@@ -1,19 +1,17 @@
-import {initialCards} from './constants.js';
-import {gridElement} from './utils.js';
-
-
 
 export class Card {
-    constructor(data, templateSelector) {
+    constructor(data, templateSelector, handleCardClick) {
       this._name = data.name;
       this._link = data.link;
       this._templateSelector = templateSelector;
+      this._handleCardClick = handleCardClick;
     }
 
     _getTemplate() {
         const elementCard = document
           .querySelector(this._templateSelector)
-          .content.querySelector(".elements__element")
+          .content
+          .querySelector(".elements__element")
           .cloneNode(true);
     
         return elementCard;
@@ -38,6 +36,10 @@ export class Card {
       }
 
       _setEventListeners() {
+        this._imageCard.addEventListener('click', () => {
+          this._handleCardClick(this._name, this._link);
+        });
+
         this._likeButton.addEventListener('click', () => {
           this._handleLike();
         });
@@ -54,13 +56,3 @@ export class Card {
       }
     }
   
-function createCard (item) {
-        const card = new Card(item, '.template');
-        const cardElement = card.generateCard();
-        return cardElement;
-      }
-
-      initialCards.forEach(item => {
-        const cardElement = createCard(item);
-        gridElement.prepend(cardElement);
-      });

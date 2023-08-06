@@ -1,11 +1,14 @@
 import {Card} from "./Card.js";
 import { initialCards } from "./constants.js";
-import { gridElement,templateCard,options, formChangeProfile, formCreateCard } from "./utils.js";
+import { gridElement,templateCard,options, formChangeProfile, formCreateCard} from "./utils.js";
 import { FormValidator } from './FormValidator.js';
 
 
 
- new Card(initialCards,templateCard);
+ initialCards.forEach(item => { 
+  const cardElement = createNewCard(item); 
+  gridElement.prepend(cardElement); 
+});
 
 
 
@@ -34,26 +37,17 @@ const formAddCard = document.querySelector("#popup__form_create-card");
 
 const popupImage = document.querySelector("#popup-image");
 const closeButtonImage = document.querySelector("#popup__close_image");
+
 const containerImage = document.querySelector(".popup__image");
 const titleImage = document.querySelector("#popup__title");
-
-const createButton = document.querySelector("#popup__create_card")
-const profileButton = document.querySelector('#popup__save_profile')
-
-const imageCard = document.querySelector(".elements__mask-group");
-const titleCard = document.querySelector(".elements__title");
  
-
-
   // Открытие попап картинки
-const handleClickImagePopup = () => {
-    containerImage.src = imageCard.src;
-    containerImage.alt = titleCard.textContent;
-    titleImage.textContent = titleCard.textContent;
+function handleClickImagePopup (name, link)  {
+    containerImage.src = link;
+    containerImage.alt = name;
+    titleImage.textContent = name;
     openPopup(popupImage);
   };
-
-  imageCard.addEventListener("click", handleClickImagePopup);
 
 
 // открытие, закрытие и отправка формы попапа создания карточек
@@ -72,7 +66,7 @@ const handleOpenPopupCard = () => {
   openPopup(popupCard);
   imageInput.value = "";
   titleInput.value = "";
-  clearCardFormInput();
+  formAddNewCardValid.resetValidationState();
   
 };
 
@@ -85,7 +79,7 @@ const handleOpenPopup = () => {
   openPopup(popupProfile);
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
-  checkChangeFormInput();
+  formProfileValid.resetValidationState();
 
 };
 
@@ -101,7 +95,7 @@ const handleclosePopup = () => {
 };
 
 //универсальные функции открытия и закрытия попапов
-const openPopup = (popup) => {
+export const openPopup = (popup) => {
   popup.classList.add("popup_opened");
   document.addEventListener("keydown",closePopupEsc);
   popup.addEventListener("mousedown", closePopupOverlay);
@@ -135,27 +129,11 @@ function closePopupOverlay (e){
   } 
 }
 
-const checkChangeFormInput = () =>{
-  const  inputs = Array.from(formChangeProfile.querySelectorAll('.popup__input'))
-  inputs.forEach = () => {
-    hideErrorForInput();
-  };
-};
-
-const clearCardFormInput = () =>{
-  const inputs = Array.from(formAddCard.querySelectorAll('.popup__input'))
-  inputs.forEach = () =>  {
-    hideErrorForInput();
-  };
-};
-
-function createNewCard({ name, link }) {
-  const card = new Card({ name, link }, templateCard);
-  const cardElement = card.createCard();
+function createNewCard(data) {
+  const card = new Card(data, "#template-card", handleClickImagePopup);
+  const cardElement = card.generateCard();
   return cardElement;
 }
-
-
 
 formChangeProfile.addEventListener("submit", handleFormSubmit);
 editButton.addEventListener("click", handleOpenPopup);

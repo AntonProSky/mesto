@@ -15,5 +15,4 @@ export const options = {
     disabledButtonClass: "popup__save_inactive",
     inputErrorClass: "popup__input-error_active",
   };
-  
-  
+
