@@ -61,7 +61,7 @@ addCard.setEventListeners();
 
 addButton.addEventListener('click', () => {
   addCard.open();
-  formAddNewCardValid.disableSubmitButton();
+  formAddNewCardValid.disabledButton();
 });
 
 
@@ -80,8 +80,7 @@ function handleClickImagePopup (name, link)  {
 
 function createNewCard(data) {
   const card = new Card(data, "#template-card", handleClickImagePopup);
-  const cardElement = card.generateCard();
-  return cardElement;
+  return card.generateCard();
 }
 
 
