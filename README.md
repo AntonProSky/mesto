@@ -1,4 +1,4 @@
 # mesto
 Проект: Место
 
-https://AntonProSky.github.io/mesto 
+https://antonprosky.github.io/mesto 
