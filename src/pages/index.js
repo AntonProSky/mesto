@@ -107,7 +107,7 @@ const popupEditAvatar = new PopupWithForm('#popup-avatar', (evt, fields) => {
 });
 popupEditAvatar.setEventListeners();
 
-const popupDeleteCard = new PopupDelete('.popup__delete-card', (evt, card) => {
+const popupDeleteCard = new PopupDelete('.popup_delete-card', (evt, card) => {
   evt.preventDefault();
   api
     .deleteCard(card.id)
