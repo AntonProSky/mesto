@@ -1,8 +1,7 @@
 .elements__bar {
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding-top: 25px;
-  padding-bottom: 30px;
+  margin: 25px auto 31px;
+  width: 246px;
 }
