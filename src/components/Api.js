@@ -56,7 +56,7 @@ _delete(url) {
   return fetch(url, {
     method: 'DELETE',
     headers: {
-      authorization: this._token,
+      authorization: 'this._token',
       'Content-Type': 'application/json'
     }
   }).then(this._checkResponse);

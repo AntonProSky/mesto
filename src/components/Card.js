@@ -39,13 +39,13 @@ export class Card {
         this._imageCard = this._elementCard.querySelector(".elements__mask-group");
         this._imageCard.src = this._link;
         this._imageCard.alt = this._title;
+        this._elementCard.querySelector(".elements__title").textContent = this._title;
         this._usersLikes = this._elementCard.querySelector('.elements__likes-counter');
         this._usersLikes.textContent = this._likes;
         this._likeButton = this._elementCard.querySelector(".elements__button-like");
         if (this._isLiked) {
           this._likeButton.classList.add('elements__button-like_active');
         }
-        this._elementCard.querySelector(".elements__title").textContent = this._title;
         this._setEventListeners();
     
         return this._elementCard;
