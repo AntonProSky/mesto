@@ -1,10 +1,10 @@
 import './index.css';
 
-import { Card } from "../components/Card.js";
+import { Card } from '../components/Card.js';
 import { FormValidator } from '../components/FormValidator.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
-import { PopupDelete } from '../components/PopupDelete';
+import { PopupDelete } from '../components/PopupDelete.js';
 import { Section } from '../components/Section.js';
 import { UserInfo } from '../components/UserInfo.js';
 import { Api} from '../components/Api.js';
@@ -19,7 +19,7 @@ import {
   popupProfile,
   popupCard,
   popupAvatar,
-  token,} from "../utils/constants";
+  token,} from '../utils/constants.js';
 
   function openPopupProfile() {
     const userData = userInfo.getUserInfo();
@@ -60,7 +60,7 @@ const popupAddCard = new PopupWithForm('#popup-card', (evt, fields) => {
   api
     .postCard(fields['placename'], fields['href'])
     .then(res => {
-      elementList.addItem(createNewCard(res));
+      elementList.prependItem(createNewCard(res));
       popupAddCard.close();
     })
     .catch(err => {
@@ -121,13 +121,12 @@ const popupDeleteCard = new PopupDelete('.popup_delete-card', (evt, card) => {
 });
 popupDeleteCard.setEventListeners();
 
-const elementList = new Section(
-  {
-    items: data => {
-      cardList.addItem(createNewCard(data));
+const elementList = new Section({
+    renderer: data => {
+      elementList.appendItem(createNewCard(data));
     }
   },
-  '.elements__element'
+  '.elements'
 );
 popupEditProfile.setEventListeners();
 
