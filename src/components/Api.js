@@ -56,24 +56,24 @@ _delete(url) {
   return fetch(url, {
     method: 'DELETE',
     headers: {
-      authorization: 'this._token',
+      authorization: this._token,
       'Content-Type': 'application/json'
     }
   }).then(this._checkResponse);
 }
 
 getCards() {
-  const cardsUrl = `${this._address}${this._groupId}/cards`;
+  const cardsUrl = `${this._address}${this._idGroup}/cards`;
   return this._get(cardsUrl);
 }
 
 getUserInfo() {
-  const userUrl = `${this._address}${this._groupId}/users/me`;
+  const userUrl = `${this._address}${this._idGroup}/users/me`;
   return this._get(userUrl);
 }
 
 setProfile(name, about) {
-  const userUrl = `${this._address}${this._groupId}/users/me`;
+  const userUrl = `${this._address}${this._idGroup}/users/me`;
   const body = JSON.stringify({
     name: name,
     about: about,
@@ -82,7 +82,7 @@ setProfile(name, about) {
 }
 
 setAvatar(avatar) {
-  const userUrl = `${this._address}${this._groupId}/users/me/avatar`;
+  const userUrl = `${this._address}${this._idGroup}/users/me/avatar`;
   const body = JSON.stringify({
     avatar: avatar
   });
@@ -90,7 +90,7 @@ setAvatar(avatar) {
 }
 
 postCard(name, link) {
-  const userUrl = `${this._address}${this._groupId}/cards`;
+  const userUrl = `${this._address}${this._idGroup}/cards`;
   const body = JSON.stringify({
     name: name,
     link: link
@@ -99,24 +99,24 @@ postCard(name, link) {
 }
 
 deletelLike(cardId) {
-  const userUrl = `${this._address}${this._groupId}/cards/likes/${cardId}`;
+  const userUrl = `${this._address}${this._idGroup}/cards/likes/${cardId}`;
   return this._delete(userUrl);
 }
 
 deleteCard(cardId) {
-  const userUrl = `${this._address}${this._groupId}/cards/${cardId}`;
+  const userUrl = `${this._address}${this._idGroup}/cards/${cardId}`;
   return this._delete(userUrl);
 }
 
 showLike(cardId) {
-  const userUrl = `${this._address}${this._groupId}/cards/${cardId}`;
+  const userUrl = `${this._address}${this._idGroup}/cards/${cardId}`;
   return this._get(userUrl).then(res => {
     console.log(res);
   });
 }
 
 setLike(cardId) {
-  const userUrl = `${this._address}${this._groupId}/cards/likes/${cardId}`;
+  const userUrl = `${this._address}${this._idGroup}/cards/likes/${cardId}`;
   return this._put(userUrl);
 }
 

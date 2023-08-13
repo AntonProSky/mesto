@@ -182,7 +182,7 @@ addButton.addEventListener('click', openPopupAddCard);
 const api = new Api({
   address: 'https://mesto.nomoreparties.co/v1/',
   token: token,
-  groupId: 'cohort-72'
+  idGroup: 'cohort-72'
 });
 
 let userId;
