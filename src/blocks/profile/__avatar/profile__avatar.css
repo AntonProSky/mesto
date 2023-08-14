@@ -4,11 +4,13 @@
   border-radius: 50%;
   object-fit: cover;
   position: relative;
-  background-image: url(../../../images/Avatar.jpg);
+  background-image: url(../../../images/avatar__image.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 50% 50%;
   margin-right: 30px;
+  /* cursor: default;
+  flex-shrink: 0; */
 }
 
 .profile__avatar::before {
@@ -29,4 +31,17 @@
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0.5);
   transition: background-color 0.1s linear;
+}
+
+@media screen and (max-width: 917px) {
+  .profile__avatar {
+    justify-self: center;
+    margin: 0px 20px 0px 0px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .profile__avatar {
+    margin: 0px 0px 26px;
+  }
 }
