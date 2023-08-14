@@ -112,7 +112,7 @@ const popupDeleteCard = new PopupDelete('.popup_delete-card', (evt, card) => {
   api
     .deleteCard(card.id)
     .then(() => {
-      card.deleteCard();
+      card.handleDelete();
       popupDeleteCard.close();
     })
     .catch(err => {
@@ -140,7 +140,7 @@ function createNewCard(cardItem) {
       handleClickRemove: card => {
         popupDeleteCard.open(card);
       },
-      handleClickCard: () => {
+      handleCardClick: () => {
         popupWithImage.open({ name: cardItem.name, link: cardItem.link });
       },
       handleClickLike: () => {

@@ -57,14 +57,14 @@ export class Card {
         });
 
         this._likeButton.addEventListener('click', evt => {
-          this._handleLike(evt);
+          this._handleClickLike(evt);
         });
         this._element.querySelector(".elements__delete-button").addEventListener('click', () => {
           this._handleClickRemove(this);
         });
       }
 
-      handleLike(evt) {
+      _handleLike(evt) {
         evt.target.classList.toggle("elements__button-like_active");
         this._handleClickLike();
       }
